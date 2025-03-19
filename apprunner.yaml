@@ -1,0 +1,25 @@
+version: 1.0
+runtime: ruby31
+build:
+  commands:
+    pre-build:
+      # - ruby -v
+    build:
+      # - rvm use ruby-3.1.2
+      # - ruby -v
+      # - gem install bundler
+      # - bundle install
+      # - bundle update
+      # - rbenv install 3.1.2
+      # - bundle update sqlite3
+      - chmod +x run.sh
+      - cp run.sh /tmp
+      # - docker ps
+    post-build:
+      # - ruby -v
+run:
+  runtime-version: 3.1.2
+  command: bundle exec rackup --host 127.0.0.1 -p 3000
+  # command: docker exec -it AppRunner run.sh
+  network:
+    port: 3000
